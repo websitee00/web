@@ -1,0 +1,158 @@
+<html>
+<head>
+    <style>
+         body {
+        background-image: url("bg.vape.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        font-family: "Times New Roman", Times, serif;
+        color: #FFFFFF;
+    }
+    h2 {
+        color: #FFFFFF;
+        text-align: center; 
+    }
+    table {
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px;
+        background-color: #4169E1;
+        border-radius: 10px;
+    }
+    td {
+        padding: 10px;
+    }
+    input {
+        background-color: #4169E1;
+        border: none;
+        color: #FFFFFF;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 10px;
+    }
+    </style>
+    <script>
+function validateFormAndShowInvoice() {
+    var form = document.forms["form"];
+    var name = form["nama"].value;
+    var number = form["nomor"].value;
+    var address = form["alamat"].value;
+    var custom = form["costum"].value;
+    var shipment = form["opsi"].value;
+    var payment = form["metode"].value;
+    var detail = form["detail"].value;
+
+    if (name == "" || number == "" || address == "" || custom == "" || shipment == "" || payment == "" || detail == "") {
+        alert("Semua kolom harus diisi");
+        return false;
+    }
+
+    var strukHTML = `
+        <!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+            margin: 0;
+            padding: 70px;
+            background-image: url("bg.vape.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .invoice {
+            padding: 20px;
+            background-color: #4169E1;
+            border: 1px solid #836953;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            color: #4169E1;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #836953;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: 4169E1;
+        }
+    </style>
+</head>
+<body>
+<h2>&#128233 Struk/Invoice &#128233</h2>
+    <div class="invoice">
+        <table>
+            <tr><th>Nama</th><td>${name}</td></tr>
+            <tr><th>Nomor Telepon</th><td>${number}</td></tr>
+            <tr><th>Alamat Pengiriman</th><td>${address}</td></tr>
+            <tr><th>Costum</th><td>${custom}</td></tr>
+            <tr><th>Opsi Pengiriman</th><td>${shipment}</td></tr>
+            <tr><th>Metode Pembayaran</th><td>${payment}</td></tr>
+            <tr><th>Detail Costum</th><td>${detail}</td></tr>
+        </table>
+    </div>
+</body>
+</html>
+`;
+
+    document.body.innerHTML = strukHTML;
+    return false;  // Return false to prevent the form from being submitted in the traditional way
+}
+</script>
+
+</head>
+<body>
+    <h2> &#128176; Purchase &#128176; </h2>
+    <form name="form" onsubmit="return validateFormAndShowInvoice()">
+        <table>
+            <tr><td> Nama <td>: <textarea name="nama" cols="25" rows="1"></textarea>
+            <tr><td> Nomor Telepon <td>: <textarea name="nomor" cols="25" rows="1"></textarea>
+            <tr><td> Alamat Pengiriman <td>: <textarea name="alamat" cols="50" rows="11"></textarea>
+            <tr><td> Produk <td>: 
+			<input type="radio" name="costum" value=Device> Device
+			<input type="radio" name="costum" value=Liquid> Liquid
+            <tr><td> Opsi Pengiriman <td>: <select size="1" name="opsi">
+            <option>Reguler</option>
+            <option>Same Day</option>
+            <option>Instant - 2 Jam</option>
+            </select>
+            <tr><td> Metode Pembayaran <td>: <select size="1" name="metode">
+            <option>COD (Bayar di Tempat)</option>
+            <option>Dana</option>
+            <option>ShopeePay</option>
+            <option>Bank BCA</option>
+            <option>Bank Mandiri</option>
+            <option>Bank BNI</option>
+            <option>Bank BRI</option>
+            </select>
+            <tr><td>Detail Produk (keterangan jika membeli dengan kriteria tertentu) <td>: <textarea name="detail" cols="50" rows="11"> </textarea>
+        </table>
+         <center>
+                <input type="submit" value="Checkout">
+                <input type="reset" value="Reset">
+            </center>
+    </form>
+</body>
+</html>
